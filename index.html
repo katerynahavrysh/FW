@@ -265,6 +265,35 @@ select.sort{
 .review-form input:focus, .review-form textarea:focus{ outline:none; border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); }
 .review-form .stars-pick{ display:flex; gap:3px; }
 .card-actions{ position:absolute; top:10px; left:10px; display:flex; gap:5px; z-index:3; }
+.borrowers-box{
+  background:#fff8ec; border:1.5px dashed #e8c877; border-radius:11px;
+  padding:10px 11px; display:flex; flex-direction:column; gap:8px;
+}
+.borrowers-head{
+  display:flex; align-items:center; justify-content:space-between; gap:6px;
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:#8a6a1f;
+}
+.priv-tag{
+  font-family:'Inter',sans-serif; font-weight:500; font-size:9.5px; color:#a4884a;
+  background:#fbecc9; padding:2px 7px; border-radius:20px; letter-spacing:0.01em;
+}
+.no-borrowers{ font-size:12px; color:#a4884a; font-style:italic; }
+.borrower-row{
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  background:var(--white); border:1px solid #f0dfae; border-radius:8px; padding:6px 9px;
+  font-size:12.5px;
+}
+.borrower-row .b-info{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+.borrower-row .b-name{ font-weight:700; color:var(--ink); }
+.borrower-row .b-contact{ color:var(--gray-500); font-size:11px; }
+.borrower-row .b-date{ color:var(--gray-400); font-size:10px; font-family:'JetBrains Mono',monospace; }
+.borrower-add{ display:flex; flex-direction:column; gap:6px; }
+.borrower-add .two-inline{ display:flex; gap:6px; }
+.borrower-add input{
+  font-family:'Inter',sans-serif; font-size:12.5px; border:1px solid #f0dfae;
+  border-radius:8px; padding:7px 9px; background:var(--white); flex:1; min-width:0;
+}
+.borrower-add input:focus{ outline:none; border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); }
 .icon-btn{
   width:28px; height:28px; border-radius:9px; border:1px solid var(--border);
   background:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -399,9 +428,11 @@ select.sort{
 const STORAGE_KEY_BOOKS = 'library:books';
 const STORAGE_KEY_REVIEWS = 'library:reviews';
 const STORAGE_KEY_CONFIG = 'library:config';
+const STORAGE_KEY_BORROWERS = 'library:borrowers';
 
 let books = [];
 let reviews = {};
+let borrowers = {}; // { bookId: [{id, name, contact, takenAt}] } — librarian-only, never shown to readers
 let config = { name: 'Бібліотечна полиця', pin: '1234' };
 let isLibrarian = false;
 let openComments = new Set();
@@ -481,11 +512,11 @@ function showStorageWarning(){
 }
 
 async function loadAll(){
-  const [gotBooks, gotReviews, gotConfig] = await Promise.all([
-    safeGet(STORAGE_KEY_BOOKS), safeGet(STORAGE_KEY_REVIEWS), safeGet(STORAGE_KEY_CONFIG)
+  const [gotBooks, gotReviews, gotConfig, gotBorrowers] = await Promise.all([
+    safeGet(STORAGE_KEY_BOOKS), safeGet(STORAGE_KEY_REVIEWS), safeGet(STORAGE_KEY_CONFIG), safeGet(STORAGE_KEY_BORROWERS)
   ]);
 
-  storageBroken = !gotBooks.ok || !gotReviews.ok || !gotConfig.ok;
+  storageBroken = !gotBooks.ok || !gotReviews.ok || !gotConfig.ok || !gotBorrowers.ok;
 
   if(gotBooks.ok && gotBooks.value != null){
     try{ books = JSON.parse(gotBooks.value); }catch(e){ books = []; }
@@ -509,6 +540,15 @@ async function loadAll(){
     try{ config = JSON.parse(gotConfig.value); }catch(e){ config = { name:'Бібліотечна полиця', pin:'1234' }; }
   } else if(gotConfig.ok && gotConfig.value == null){
     await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config));
+  }
+
+  if(gotBorrowers.ok && gotBorrowers.value != null){
+    try{ borrowers = JSON.parse(gotBorrowers.value); }catch(e){ borrowers = {}; }
+  } else if(gotBorrowers.ok && gotBorrowers.value == null){
+    borrowers = {};
+    await safeSet(STORAGE_KEY_BORROWERS, JSON.stringify(borrowers));
+  } else {
+    borrowers = {};
   }
 
   if(storageBroken) showStorageWarning();
@@ -560,6 +600,36 @@ function ringBadgeHtml(available, total){
     </div>`;
 }
 
+function borrowersSectionHtml(book){
+  if(!isLibrarian) return '';
+  const list = borrowers[book.id] || [];
+  const canCheckout = list.length < book.total;
+  return `
+  <div class="borrowers-box" data-book="${book.id}">
+    <div class="borrowers-head">
+      <span>🔒 На руках (${list.length}/${book.total})</span>
+      <span class="priv-tag">видно лише бібліотекарці</span>
+    </div>
+    ${list.length === 0 ? '<div class="no-borrowers">Усі примірники зараз у бібліотеці.</div>' : list.map(b => `
+      <div class="borrower-row">
+        <div class="b-info">
+          <span class="b-name">${escapeHtml(b.name)}</span>
+          ${b.contact ? `<span class="b-contact">${escapeHtml(b.contact)}</span>` : ''}
+          <span class="b-date">видано ${timeAgo(b.takenAt)}</span>
+        </div>
+        <button class="btn small ghost-dark" data-action="return-copy" data-book="${book.id}" data-borrower="${b.id}">Повернути</button>
+      </div>`).join('') }
+    ${canCheckout ? `
+    <div class="borrower-add">
+      <div class="two-inline">
+        <input type="text" placeholder="Ім'я читачки*" data-role="borrower-name" data-book="${book.id}">
+        <input type="text" placeholder="Контакт (необов'язково)" data-role="borrower-contact" data-book="${book.id}">
+      </div>
+      <button class="btn primary small" data-action="checkout-copy" data-book="${book.id}" style="align-self:flex-end;">Видати примірник</button>
+    </div>` : '<div class="no-borrowers">Немає вільних примірників для видачі.</div>'}
+  </div>`;
+}
+
 function timeAgo(ts){
   const diff = Date.now() - ts, min = Math.floor(diff/60000);
   if(min < 1) return 'щойно';
@@ -600,6 +670,7 @@ function bookCardHtml(book, idx){
     <div class="author">${escapeHtml(book.author || 'Автор невідомий')}</div>
     <p class="desc ${descExpanded ? 'expanded':''}">${escapeHtml(book.description || 'Без опису.')}</p>
     ${(book.description && book.description.length > 110) ? `<button class="desc-toggle" data-action="toggle-desc" data-book="${book.id}">${descExpanded ? 'згорнути' : 'читати більше'}</button>` : ''}
+    ${borrowersSectionHtml(book)}
     <hr class="divider">
     <div class="rating-row">
       ${renderStarsStatic(avg)}
@@ -703,6 +774,7 @@ function attachTilt(){
 async function persistBooks(){ await safeSet(STORAGE_KEY_BOOKS, JSON.stringify(books)); }
 async function persistReviews(){ await safeSet(STORAGE_KEY_REVIEWS, JSON.stringify(reviews)); }
 async function persistConfig(){ await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config)); }
+async function persistBorrowers(){ await safeSet(STORAGE_KEY_BORROWERS, JSON.stringify(borrowers)); }
 
 function openPinModal(){
   $modalRoot.innerHTML = `
@@ -810,6 +882,28 @@ $grid.addEventListener('click', async (e) => {
     const idx = books.findIndex(b => b.id === bookId);
     if(idx > -1) books[idx] = { ...books[idx], ...data };
     editingId = null; await persistBooks(); render(); showToast('Зміни збережено');
+  }
+  else if(action === 'checkout-copy'){
+    const card = t.closest('.card');
+    const name = card.querySelector(`[data-role="borrower-name"][data-book="${bookId}"]`).value.trim();
+    const contact = card.querySelector(`[data-role="borrower-contact"][data-book="${bookId}"]`).value.trim();
+    if(!name){ showToast('Вкажіть ім\'я читачки.'); return; }
+    const book = books.find(b => b.id === bookId);
+    if(!book) return;
+    if(!borrowers[bookId]) borrowers[bookId] = [];
+    if(borrowers[bookId].length >= book.total){ showToast('Немає вільних примірників.'); return; }
+    borrowers[bookId].push({ id: uid(), name, contact, takenAt: Date.now() });
+    book.available = Math.max(0, book.available - 1);
+    await persistBorrowers(); await persistBooks(); render(); showToast(`Видано: ${name}`);
+  }
+  else if(action === 'return-copy'){
+    const borrowerId = t.dataset.borrower;
+    const book = books.find(b => b.id === bookId);
+    const list = borrowers[bookId] || [];
+    const idx = list.findIndex(b => b.id === borrowerId);
+    if(idx > -1) list.splice(idx, 1);
+    if(book) book.available = Math.min(book.total, book.available + 1);
+    await persistBorrowers(); await persistBooks(); render(); showToast('Примірник повернуто');
   }
 });
 
