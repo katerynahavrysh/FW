@@ -8,316 +8,335 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --white:#ffffff;
-    --bg-fog:#eef2f7;
-    --surface:#ffffff;
-    --surface-alt:#f5f8fb;
-    --border:#e3e9f1;
-    --gray-100:#f1f5f9;
-    --gray-300:#cbd5e1;
-    --gray-400:#98a6b8;
-    --gray-500:#71829a;
-    --gray-700:#3a475a;
-    --ink:#1b2532;
-    --navy-900:#0a1220;
-    --navy-800:#101d33;
-    --blue-700:#2557c9;
-    --blue-600:#2f6fed;
-    --blue-500:#3f82ff;
-    --blue-400:#7db0ff;
-    --blue-100:#e2ecff;
-    --glow: rgba(63,130,255,0.38);
-    --shadow-sm: 0 1px 2px rgba(16,29,51,0.06);
-    --shadow-card: 0 1px 2px rgba(16,29,51,0.06), 0 12px 28px -10px rgba(16,29,51,0.14);
-    --shadow-card-hover: 0 1px 2px rgba(16,29,51,0.08), 0 24px 48px -12px rgba(47,111,237,0.30);
-    --radius: 16px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg-fog);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
-    min-height:100vh;
-    padding-bottom:70px;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.display{ font-family:'Manrope', sans-serif; }
-  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
+:root{
+  --white:#ffffff;
+  --bg-fog:#eef8fc;
+  --surface:#ffffff;
+  --surface-alt:#f2fafd;
+  --border:#dbeef6;
+  --gray-100:#eef8fc;
+  --gray-300:#c3dfe9;
+  --gray-400:#8fb9c9;
+  --gray-500:#5f92a5;
+  --gray-700:#345867;
+  --ink:#132a34;
+  --sky-900:#0d3b4d;
+  --sky-800:#125467;
+  --sky-700:#146a83;
+  --cyan-700:#1590ad;
+  --cyan-600:#1ea6c4;
+  --cyan-500:#33bcda;
+  --cyan-400:#72d3e8;
+  --cyan-100:#dcf4fa;
+  --glow: rgba(51,188,218,0.38);
+  --shadow-sm: 0 1px 2px rgba(13,59,77,0.06);
+  --shadow-card: 0 1px 2px rgba(13,59,77,0.06), 0 12px 28px -10px rgba(13,59,77,0.14);
+  --shadow-card-hover: 0 1px 2px rgba(13,59,77,0.08), 0 24px 48px -12px rgba(30,166,196,0.32);
+  --radius: 16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg-fog);
+  color:var(--ink);
+  font-family:'Inter', sans-serif;
+  min-height:100vh;
+  padding-bottom:70px;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{ font-family:'Manrope', sans-serif; }
+.mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
 
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(165deg, var(--navy-900) 0%, var(--navy-800) 55%, #142544 100%);
-    padding:56px 20px 84px;
-  }
-  .hero::after{
-    content:"";
-    position:absolute; left:0; right:0; bottom:0; height:60px;
-    background:linear-gradient(180deg, transparent, var(--bg-fog));
-    pointer-events:none;
-  }
-  .blob{
-    position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none;
-    opacity:0.55; mix-blend-mode:screen;
-  }
-  .blob1{ width:420px; height:420px; background:radial-gradient(circle, var(--blue-600), transparent 70%); top:-160px; left:-100px; animation:driftA 16s ease-in-out infinite; }
-  .blob2{ width:360px; height:360px; background:radial-gradient(circle, var(--blue-400), transparent 70%); bottom:-200px; right:-80px; animation:driftB 20s ease-in-out infinite; }
-  .blob3{ width:220px; height:220px; background:radial-gradient(circle, #ffffff, transparent 70%); top:20%; right:18%; opacity:0.10; animation:driftC 12s ease-in-out infinite; }
-  @keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(40px,30px) scale(1.08);} }
-  @keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-30px,-20px) scale(1.05);} }
-  @keyframes driftC{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(-20px,25px);} }
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(165deg, var(--sky-900) 0%, var(--sky-800) 55%, var(--sky-700) 100%);
+  padding:56px 20px 84px;
+}
+.hero::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:60px;
+  background:linear-gradient(180deg, transparent, var(--bg-fog));
+  pointer-events:none;
+}
+.blob{
+  position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none;
+  opacity:0.55; mix-blend-mode:screen;
+}
+.blob1{ width:420px; height:420px; background:radial-gradient(circle, var(--cyan-600), transparent 70%); top:-160px; left:-100px; animation:driftA 16s ease-in-out infinite; }
+.blob2{ width:360px; height:360px; background:radial-gradient(circle, var(--cyan-400), transparent 70%); bottom:-200px; right:-80px; animation:driftB 20s ease-in-out infinite; }
+.blob3{ width:220px; height:220px; background:radial-gradient(circle, #ffffff, transparent 70%); top:20%; right:18%; opacity:0.10; animation:driftC 12s ease-in-out infinite; }
+@keyframes driftA{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(40px,30px) scale(1.08);} }
+@keyframes driftB{ 0%,100%{ transform:translate(0,0) scale(1);} 50%{ transform:translate(-30px,-20px) scale(1.05);} }
+@keyframes driftC{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(-20px,25px);} }
 
-  .nameplate{
-    position:relative; z-index:2;
-    max-width:900px; margin:0 auto;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.14);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-    border-radius:20px;
-    padding:26px 30px;
-    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
-    box-shadow:0 20px 60px -20px rgba(0,0,0,0.5);
-  }
-  .nameplate .brand{ display:flex; flex-direction:column; gap:4px; }
-  .nameplate h1{
-    color:var(--white); font-size:27px; font-weight:800; margin:0; letter-spacing:-0.01em; cursor:text;
-  }
-  .nameplate .subtitle{
-    color:#a9bcdd; font-size:12.5px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em;
-  }
-  .lib-toggle{ display:flex; align-items:center; gap:10px; }
+.nameplate{
+  position:relative; z-index:2;
+  max-width:920px; margin:0 auto;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.16);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-radius:20px;
+  padding:22px 30px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  box-shadow:0 20px 60px -20px rgba(0,0,0,0.5);
+}
+.nameplate .brand{ display:flex; align-items:center; gap:14px; }
+.logo-mark{
+  width:52px; height:52px; border-radius:50%; overflow:hidden; flex-shrink:0;
+  background:var(--white); border:2px solid rgba(255,255,255,0.35);
+  display:flex; align-items:center; justify-content:center;
+}
+.logo-mark img{ width:100%; height:100%; object-fit:cover; display:block; }
+.brand-text{ display:flex; flex-direction:column; gap:4px; }
+.nameplate h1{
+  color:var(--white); font-size:27px; font-weight:800; margin:0; letter-spacing:-0.01em; cursor:text;
+}
+.nameplate .subtitle{
+  color:#aee3f2; font-size:12.5px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em;
+}
+.lib-toggle{ display:flex; align-items:center; gap:10px; }
 
-  /* Custom sliding mode switch */
-  .mode-switch{
-    position:relative; display:grid; grid-template-columns:1fr 1fr; width:252px; height:42px;
-    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:4px;
-  }
-  .mode-thumb{
-    position:absolute; top:4px; left:4px; width:calc(50% - 4px); height:calc(100% - 8px);
-    background:linear-gradient(135deg, var(--blue-500), var(--blue-700));
-    border-radius:9px; box-shadow:0 6px 18px -4px rgba(47,111,237,0.65), inset 0 1px 0 rgba(255,255,255,0.25);
-    transition:transform .38s cubic-bezier(.22,.9,.3,1.2);
-  }
-  .mode-switch[data-state="librarian"] .mode-thumb{ transform:translateX(100%); }
-  .mode-opt{
-    position:relative; z-index:1; background:none; border:none; cursor:pointer;
-    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700;
-    display:flex; align-items:center; justify-content:center; gap:6px;
-    color:rgba(255,255,255,0.55); transition:color .3s ease; border-radius:9px;
-  }
-  .mode-switch[data-state="reader"] .mode-opt[data-mode="reader"]{ color:#fff; }
-  .mode-switch[data-state="librarian"] .mode-opt[data-mode="librarian"]{ color:#fff; }
-  .mode-opt svg{ width:14px; height:14px; flex-shrink:0; }
-  .settings-btn{
-    width:36px; height:36px; border-radius:11px; border:1px solid rgba(255,255,255,0.18);
-    background:rgba(255,255,255,0.07); color:#dce8ff; cursor:pointer; display:none;
-    align-items:center; justify-content:center; font-size:15px; transition:background .18s, transform .18s;
-  }
-  .settings-btn.show{ display:flex; }
-  .settings-btn:hover{ background:rgba(255,255,255,0.16); transform:rotate(25deg); }
+.mode-switch{
+  position:relative; display:grid; grid-template-columns:1fr 1fr; width:252px; height:42px;
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:4px;
+}
+.mode-thumb{
+  position:absolute; top:4px; left:4px; width:calc(50% - 4px); height:calc(100% - 8px);
+  background:linear-gradient(135deg, var(--cyan-500), var(--cyan-700));
+  border-radius:9px; box-shadow:0 6px 18px -4px rgba(30,166,196,0.65), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition:transform .38s cubic-bezier(.22,.9,.3,1.2);
+}
+.mode-switch[data-state="librarian"] .mode-thumb{ transform:translateX(100%); }
+.mode-opt{
+  position:relative; z-index:1; background:none; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  color:rgba(255,255,255,0.55); transition:color .3s ease; border-radius:9px;
+}
+.mode-switch[data-state="reader"] .mode-opt[data-mode="reader"]{ color:#fff; }
+.mode-switch[data-state="librarian"] .mode-opt[data-mode="librarian"]{ color:#fff; }
+.mode-opt svg{ width:14px; height:14px; flex-shrink:0; }
+.settings-btn{
+  width:36px; height:36px; border-radius:11px; border:1px solid rgba(255,255,255,0.18);
+  background:rgba(255,255,255,0.07); color:#dcf3fb; cursor:pointer; display:none;
+  align-items:center; justify-content:center; font-size:15px; transition:background .18s, transform .18s;
+}
+.settings-btn.show{ display:flex; }
+.settings-btn:hover{ background:rgba(255,255,255,0.16); transform:rotate(25deg); }
+.btn{
+  font-family:'Inter',sans-serif; font-weight:600; font-size:13px;
+  border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.06); color:var(--white);
+  padding:9px 16px; border-radius:12px; cursor:pointer; transition:all .18s ease; white-space:nowrap;
+}
+.btn:hover{ background:rgba(255,255,255,0.14); transform:translateY(-1px); }
+.btn.primary{
+  background:linear-gradient(135deg, var(--cyan-500), var(--cyan-700));
+  border-color:transparent; color:#fff; box-shadow:0 8px 20px -6px rgba(30,166,196,0.6);
+}
+.btn.primary:hover{ box-shadow:0 10px 26px -6px rgba(30,166,196,0.75); transform:translateY(-1px); }
+.btn.small{ padding:6px 12px; font-size:12px; border-radius:9px; }
+.btn.ghost-dark{ border:1px solid var(--border); background:var(--white); color:var(--gray-700); }
+.btn.ghost-dark:hover{ background:var(--gray-100); }
+.btn.danger{ border-color:var(--border); color:#94a0b3; background:var(--white); }
+.btn.danger:hover{ background:#fbfbfd; color:#5c6b83; }
+.btn:focus-visible, input:focus-visible, textarea:focus-visible, .star:focus-visible, select:focus-visible{
+  outline:2px solid var(--cyan-600); outline-offset:2px;
+}
 
-  .btn{
-    font-family:'Inter',sans-serif; font-weight:600; font-size:13px;
-    border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.06); color:var(--white);
-    padding:9px 16px; border-radius:12px; cursor:pointer; transition:all .18s ease; white-space:nowrap;
-  }
-  .btn:hover{ background:rgba(255,255,255,0.14); transform:translateY(-1px); }
-  .btn.primary{
-    background:linear-gradient(135deg, var(--blue-600), var(--blue-700));
-    border-color:transparent; color:#fff; box-shadow:0 8px 20px -6px rgba(47,111,237,0.6);
-  }
-  .btn.primary:hover{ box-shadow:0 10px 26px -6px rgba(47,111,237,0.75); transform:translateY(-1px); }
-  .btn.small{ padding:6px 12px; font-size:12px; border-radius:9px; }
-  .btn.ghost-dark{ border:1px solid var(--border); background:var(--white); color:var(--gray-700); }
-  .btn.ghost-dark:hover{ background:var(--gray-100); }
-  .btn.danger{ border-color:var(--border); color:#94a0b3; background:var(--white); }
-  .btn.danger:hover{ background:#fbfbfd; color:#5c6b83; }
-  .btn:focus-visible, input:focus-visible, textarea:focus-visible, .star:focus-visible, select:focus-visible{
-    outline:2px solid var(--blue-500); outline-offset:2px;
-  }
+/* ---------- Toolbar ---------- */
+.toolbar{
+  max-width:920px; margin:-40px auto 26px; position:relative; z-index:3; padding:0 20px;
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  background:var(--surface); border:1px solid var(--border); border-radius:16px;
+  padding:14px 18px; box-shadow:var(--shadow-card);
+}
+.search-input{
+  flex:1; min-width:180px; background:var(--surface-alt); border:1px solid var(--border);
+  border-radius:11px; padding:10px 14px; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
+  transition:border-color .15s, box-shadow .15s;
+}
+.search-input:focus{ border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); outline:none; }
+.toolbar label.check{
+  display:flex; align-items:center; gap:6px; color:var(--gray-700);
+  font-family:'JetBrains Mono',monospace; font-size:12px; cursor:pointer; user-select:none;
+}
+select.sort{
+  background:var(--surface-alt); border:1px solid var(--border); border-radius:11px;
+  padding:9px 12px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-700); cursor:pointer;
+}
 
-  /* ---------- Toolbar ---------- */
-  .toolbar{
-    max-width:900px; margin:-40px auto 26px; position:relative; z-index:3; padding:0 20px;
-    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    background:var(--surface); border:1px solid var(--border); border-radius:16px;
-    padding:14px 18px; box-shadow:var(--shadow-card);
-  }
-  .search-input{
-    flex:1; min-width:180px; background:var(--surface-alt); border:1px solid var(--border);
-    border-radius:11px; padding:10px 14px; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink);
-    transition:border-color .15s, box-shadow .15s;
-  }
-  .search-input:focus{ border-color:var(--blue-500); box-shadow:0 0 0 3px var(--blue-100); outline:none; }
-  .toolbar label.check{
-    display:flex; align-items:center; gap:6px; color:var(--gray-700);
-    font-family:'JetBrains Mono',monospace; font-size:12px; cursor:pointer; user-select:none;
-  }
-  select.sort{
-    background:var(--surface-alt); border:1px solid var(--border); border-radius:11px;
-    padding:9px 12px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-700); cursor:pointer;
-  }
+.storage-warning{
+  max-width:920px; margin:0 auto 18px; padding:12px 18px;
+  background:#fff4e5; border:1px solid #f3d4a0; border-radius:14px;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#7a5210; line-height:1.5;
+}
 
-  /* ---------- Grid ---------- */
-  .grid{
-    max-width:1080px; margin:0 auto; padding:0 20px;
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px;
-  }
+/* ---------- Grid ---------- */
+.grid{
+  max-width:1100px; margin:0 auto; padding:0 20px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:22px;
+}
 
-  /* ---------- Card ---------- */
-  .card{
-    position:relative;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow-card);
-    padding:18px 18px 16px;
-    display:flex; flex-direction:column; gap:9px;
-    transition:box-shadow .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);
-    transform-style:preserve-3d;
-    will-change:transform;
-  }
-  .card.tilting{ transition:box-shadow .3s ease; }
-  .card:hover{ box-shadow:var(--shadow-card-hover); }
-  .card.anim{ animation:cardIn .6s cubic-bezier(.2,.8,.2,1) both; animation-delay:var(--d,0ms); }
-  @keyframes cardIn{ from{ opacity:0; transform:translateY(18px) scale(.98);} to{ opacity:1; transform:translateY(0) scale(1);} }
+/* ---------- Card ---------- */
+.card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-card);
+  padding:18px 18px 16px;
+  display:flex; flex-direction:column; gap:9px;
+  transition:box-shadow .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.card.tilting{ transition:box-shadow .3s ease; }
+.card:hover{ box-shadow:var(--shadow-card-hover); }
+.card.anim{ animation:cardIn .6s cubic-bezier(.2,.8,.2,1) both; animation-delay:var(--d,0ms); }
+@keyframes cardIn{ from{ opacity:0; transform:translateY(18px) scale(.98);} to{ opacity:1; transform:translateY(0) scale(1);} }
 
-  .card-photo-wrap{
-    border-radius:11px; background:linear-gradient(160deg, var(--gray-100), #e6ecf4);
-    height:150px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
-  }
-  .card-photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .placeholder-icon{ opacity:0.4; }
+/* Rectangular, portrait "book cover" style photo */
+.card-photo-wrap{
+  border-radius:11px; background:linear-gradient(160deg, var(--gray-100), #d9eef5);
+  aspect-ratio: 2 / 3; width:100%;
+  display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
+}
+.card-photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+.placeholder-icon{ opacity:0.4; }
 
-  /* Availability ring */
-  .ring-badge{
-    position:absolute; top:-14px; right:-10px; width:64px; height:64px; z-index:2;
-    background:var(--white); border-radius:50%; box-shadow:0 8px 20px -6px rgba(16,29,51,0.25), 0 0 0 4px var(--white);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .ring-badge.avail{ box-shadow:0 8px 20px -6px rgba(47,111,237,0.5), 0 0 0 4px var(--white); }
-  .ring-badge svg{ position:absolute; inset:0; transform:rotate(-90deg); }
-  .ring-badge .ring-track{ stroke:var(--gray-100); }
-  .ring-badge .ring-fill{ stroke:var(--blue-500); stroke-linecap:round; transition:stroke-dashoffset .6s ease; }
-  .ring-badge .ring-fill.empty{ stroke:var(--gray-300); }
-  .ring-badge .ring-num{
-    font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--blue-700);
-    text-align:center; line-height:1.05;
-  }
-  .ring-badge.zero .ring-num{ color:var(--gray-500); }
-  .ring-badge .ring-num small{ display:block; font-size:8px; color:var(--gray-400); font-weight:500; letter-spacing:0.03em; }
+/* Availability ring */
+.ring-badge{
+  position:absolute; top:-14px; right:-10px; width:64px; height:64px; z-index:2;
+  background:var(--white); border-radius:50%; box-shadow:0 8px 20px -6px rgba(13,59,77,0.25), 0 0 0 4px var(--white);
+  display:flex; align-items:center; justify-content:center;
+}
+.ring-badge.avail{ box-shadow:0 8px 20px -6px rgba(30,166,196,0.5), 0 0 0 4px var(--white); }
+.ring-badge svg{ position:absolute; inset:0; transform:rotate(-90deg); }
+.ring-badge .ring-track{ stroke:var(--gray-100); }
+.ring-badge .ring-fill{ stroke:var(--cyan-600); stroke-linecap:round; transition:stroke-dashoffset .6s ease; }
+.ring-badge .ring-fill.empty{ stroke:var(--gray-300); }
+.ring-badge .ring-num{
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--sky-700);
+  text-align:center; line-height:1.05;
+}
+.ring-badge.zero .ring-num{ color:var(--gray-500); }
+.ring-badge .ring-num small{ display:block; font-size:8px; color:var(--gray-400); font-weight:500; letter-spacing:0.03em; }
 
-  .card h3{ margin:6px 0 0; font-size:18.5px; line-height:1.25; font-weight:700; letter-spacing:-0.01em; }
-  .card .author{ color:var(--gray-500); font-size:13px; margin-top:-5px; }
-  .card .desc{
-    font-size:13.5px; line-height:1.5; color:var(--gray-700);
-    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-  }
-  .card .desc.expanded{ -webkit-line-clamp:unset; }
-  .desc-toggle{
-    background:none; border:none; padding:0; color:var(--blue-600); font-family:'JetBrains Mono',monospace;
-    font-size:11px; cursor:pointer; text-align:left; width:fit-content; font-weight:500;
-  }
-  .desc-toggle:hover{ text-decoration:underline; }
+.card h3{ margin:6px 0 0; font-size:18.5px; line-height:1.25; font-weight:700; letter-spacing:-0.01em; }
+.card .author{ color:var(--gray-500); font-size:13px; margin-top:-5px; }
+.card .desc{
+  font-size:13.5px; line-height:1.5; color:var(--gray-700);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.card .desc.expanded{ -webkit-line-clamp:unset; }
+.desc-toggle{
+  background:none; border:none; padding:0; color:var(--cyan-700); font-family:'JetBrains Mono',monospace;
+  font-size:11px; cursor:pointer; text-align:left; width:fit-content; font-weight:500;
+}
+.desc-toggle:hover{ text-decoration:underline; }
+.divider{ border:none; border-top:1px solid var(--border); margin:1px 0; }
+.rating-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.stars{ display:flex; gap:2px; }
+.star{ cursor:pointer; background:none; border:none; padding:0; line-height:0; transition:transform .12s ease; }
+.star:hover{ transform:scale(1.15); }
+.avg-text{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-500); }
+.comments-toggle{
+  background:var(--surface-alt); border:1px solid var(--border); border-radius:10px;
+  padding:6px 11px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-700);
+  cursor:pointer; width:fit-content; transition:background .15s;
+}
+.comments-toggle:hover{ background:var(--cyan-100); border-color:var(--cyan-100); }
+.comments-panel{ display:none; flex-direction:column; gap:10px; margin-top:2px; }
+.comments-panel.open{ display:flex; animation:fadeSlide .35s ease both; }
+@keyframes fadeSlide{ from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);} }
+.comment-item{ font-size:12.5px; background:var(--surface-alt); border-radius:10px; padding:9px 11px; border:1px solid var(--border); }
+.comment-item .c-head{ display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--gray-500); margin-bottom:3px; }
+.comment-item .c-name{ font-weight:700; color:var(--ink); }
+.no-comments{ font-size:12px; color:var(--gray-500); font-style:italic; }
+.review-form{ display:flex; flex-direction:column; gap:7px; background:var(--surface-alt); padding:11px; border-radius:11px; border:1px solid var(--border); }
+.review-form input, .review-form textarea{
+  font-family:'Inter',sans-serif; font-size:12.5px; border:1px solid var(--border);
+  border-radius:8px; padding:7px 9px; background:var(--white); resize:vertical;
+}
+.review-form input:focus, .review-form textarea:focus{ outline:none; border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); }
+.review-form .stars-pick{ display:flex; gap:3px; }
+.card-actions{ position:absolute; top:10px; left:10px; display:flex; gap:5px; z-index:3; }
+.icon-btn{
+  width:28px; height:28px; border-radius:9px; border:1px solid var(--border);
+  background:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center;
+  font-size:12px; box-shadow:var(--shadow-sm); transition:background .15s, transform .15s;
+}
+.icon-btn:hover{ background:var(--cyan-100); transform:translateY(-1px); }
 
-  .divider{ border:none; border-top:1px solid var(--border); margin:1px 0; }
+/* ---------- Add / Edit form card ---------- */
+.add-card{
+  border:2px dashed var(--gray-300); border-radius:var(--radius);
+  background:var(--surface-alt); color:var(--gray-500);
+  display:flex; align-items:center; justify-content:center; min-height:150px; cursor:pointer;
+  font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; gap:8px; flex-direction:column;
+  padding:16px; transition:all .2s;
+}
+.add-card:hover{ background:var(--cyan-100); border-color:var(--cyan-400); color:var(--cyan-700); }
+.add-card .plus{ font-size:26px; color:var(--cyan-600); }
+.edit-form{ display:flex; flex-direction:column; gap:8px; }
+.edit-form label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.05em; }
+.edit-form input, .edit-form textarea{
+  font-family:'Inter',sans-serif; font-size:13px; border:1px solid var(--border);
+  border-radius:8px; padding:8px 10px; background:var(--surface-alt); width:100%;
+}
+.edit-form input:focus, .edit-form textarea:focus{ outline:none; border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); background:var(--white); }
+.edit-form .two-col{ display:flex; gap:8px; }
+.edit-form .two-col > div{ flex:1; }
+.edit-form .form-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:4px; }
 
-  .rating-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .stars{ display:flex; gap:2px; }
-  .star{ cursor:pointer; background:none; border:none; padding:0; line-height:0; transition:transform .12s ease; }
-  .star:hover{ transform:scale(1.15); }
-  .avg-text{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-500); }
+/* ---------- Modal ---------- */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(13,59,77,0.55); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center; z-index:50; padding:20px;
+  animation:fadeSlide .2s ease both;
+}
+.modal{
+  background:var(--white); border-radius:18px; padding:26px; max-width:340px; width:100%;
+  box-shadow:0 30px 70px -15px rgba(13,59,77,0.5); border:1px solid var(--border);
+}
+.modal h3{ margin:0 0 4px; }
+.modal p{ font-size:13px; color:var(--gray-500); margin:0 0 14px; }
+.modal input{ width:100%; font-size:16px; padding:11px 12px; border:1px solid var(--border); border-radius:10px; font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-align:center; }
+.modal input:focus{ outline:none; border-color:var(--cyan-600); box-shadow:0 0 0 3px var(--cyan-100); }
+.modal .modal-actions{ display:flex; gap:8px; margin-top:14px; justify-content:flex-end; }
+.modal .error{ color:#c14a4a; font-size:12px; margin-top:6px; min-height:14px; font-weight:600; }
+.empty-state{ max-width:900px; margin:60px auto; text-align:center; color:var(--gray-500); font-family:'JetBrains Mono',monospace; }
+.loading-state{ max-width:900px; margin:80px auto; text-align:center; color:var(--gray-500); font-family:'JetBrains Mono',monospace; font-size:13px; }
+.toast{
+  position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+  background:var(--sky-900); color:#fff; padding:11px 20px; border-radius:20px;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; z-index:100; opacity:0; transition:opacity .3s;
+  pointer-events:none; box-shadow:0 12px 30px -8px rgba(0,0,0,0.4);
+}
+.toast.show{ opacity:1; }
 
-  .comments-toggle{
-    background:var(--surface-alt); border:1px solid var(--border); border-radius:10px;
-    padding:6px 11px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-700);
-    cursor:pointer; width:fit-content; transition:background .15s;
-  }
-  .comments-toggle:hover{ background:var(--blue-100); border-color:var(--blue-100); }
+/* ---------- Footer ---------- */
+.site-footer{
+  max-width:1100px; margin:50px auto 0; padding:0 20px;
+  display:flex; justify-content:center;
+}
+.gh-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--surface); border:1px solid var(--border); border-radius:999px;
+  padding:8px 16px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-700);
+  text-decoration:none; box-shadow:var(--shadow-sm); transition:transform .15s, box-shadow .15s;
+}
+.gh-badge:hover{ transform:translateY(-1px); box-shadow:var(--shadow-card); color:var(--sky-800); }
+.gh-badge svg{ width:16px; height:16px; }
 
-  .comments-panel{ display:none; flex-direction:column; gap:10px; margin-top:2px; }
-  .comments-panel.open{ display:flex; animation:fadeSlide .35s ease both; }
-  @keyframes fadeSlide{ from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);} }
-  .comment-item{ font-size:12.5px; background:var(--surface-alt); border-radius:10px; padding:9px 11px; border:1px solid var(--border); }
-  .comment-item .c-head{ display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--gray-500); margin-bottom:3px; }
-  .comment-item .c-name{ font-weight:700; color:var(--ink); }
-  .no-comments{ font-size:12px; color:var(--gray-500); font-style:italic; }
-
-  .review-form{ display:flex; flex-direction:column; gap:7px; background:var(--surface-alt); padding:11px; border-radius:11px; border:1px solid var(--border); }
-  .review-form input, .review-form textarea{
-    font-family:'Inter',sans-serif; font-size:12.5px; border:1px solid var(--border);
-    border-radius:8px; padding:7px 9px; background:var(--white); resize:vertical;
-  }
-  .review-form input:focus, .review-form textarea:focus{ outline:none; border-color:var(--blue-500); box-shadow:0 0 0 3px var(--blue-100); }
-  .review-form .stars-pick{ display:flex; gap:3px; }
-
-  .card-actions{ position:absolute; top:10px; left:10px; display:flex; gap:5px; z-index:3; }
-  .icon-btn{
-    width:28px; height:28px; border-radius:9px; border:1px solid var(--border);
-    background:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center;
-    font-size:12px; box-shadow:var(--shadow-sm); transition:background .15s, transform .15s;
-  }
-  .icon-btn:hover{ background:var(--blue-100); transform:translateY(-1px); }
-
-  /* ---------- Add / Edit form card ---------- */
-  .add-card{
-    border:2px dashed var(--gray-300); border-radius:var(--radius);
-    background:var(--surface-alt); color:var(--gray-500);
-    display:flex; align-items:center; justify-content:center; min-height:150px; cursor:pointer;
-    font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; gap:8px; flex-direction:column;
-    padding:16px; transition:all .2s;
-  }
-  .add-card:hover{ background:var(--blue-100); border-color:var(--blue-400); color:var(--blue-700); }
-  .add-card .plus{ font-size:26px; color:var(--blue-500); }
-
-  .edit-form{ display:flex; flex-direction:column; gap:8px; }
-  .edit-form label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.05em; }
-  .edit-form input, .edit-form textarea{
-    font-family:'Inter',sans-serif; font-size:13px; border:1px solid var(--border);
-    border-radius:8px; padding:8px 10px; background:var(--surface-alt); width:100%;
-  }
-  .edit-form input:focus, .edit-form textarea:focus{ outline:none; border-color:var(--blue-500); box-shadow:0 0 0 3px var(--blue-100); background:var(--white); }
-  .edit-form .two-col{ display:flex; gap:8px; }
-  .edit-form .two-col > div{ flex:1; }
-  .edit-form .form-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:4px; }
-
-  /* ---------- Modal ---------- */
-  .modal-overlay{
-    position:fixed; inset:0; background:rgba(10,18,32,0.55); backdrop-filter:blur(4px);
-    display:flex; align-items:center; justify-content:center; z-index:50; padding:20px;
-    animation:fadeSlide .2s ease both;
-  }
-  .modal{
-    background:var(--white); border-radius:18px; padding:26px; max-width:340px; width:100%;
-    box-shadow:0 30px 70px -15px rgba(10,18,32,0.5); border:1px solid var(--border);
-  }
-  .modal h3{ margin:0 0 4px; }
-  .modal p{ font-size:13px; color:var(--gray-500); margin:0 0 14px; }
-  .modal input{ width:100%; font-size:16px; padding:11px 12px; border:1px solid var(--border); border-radius:10px; font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-align:center; }
-  .modal input:focus{ outline:none; border-color:var(--blue-500); box-shadow:0 0 0 3px var(--blue-100); }
-  .modal .modal-actions{ display:flex; gap:8px; margin-top:14px; justify-content:flex-end; }
-  .modal .error{ color:#5c6b83; font-size:12px; margin-top:6px; min-height:14px; font-weight:600; }
-
-  .empty-state{ max-width:900px; margin:60px auto; text-align:center; color:var(--gray-500); font-family:'JetBrains Mono',monospace; }
-  .loading-state{ max-width:900px; margin:80px auto; text-align:center; color:var(--gray-500); font-family:'JetBrains Mono',monospace; font-size:13px; }
-
-  .toast{
-    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-    background:var(--navy-900); color:#fff; padding:11px 20px; border-radius:20px;
-    font-family:'JetBrains Mono',monospace; font-size:12.5px; z-index:100; opacity:0; transition:opacity .3s;
-    pointer-events:none; box-shadow:0 12px 30px -8px rgba(0,0,0,0.4);
-  }
-  .toast.show{ opacity:1; }
-
-  @media (max-width:520px){
-    .nameplate{ flex-direction:column; align-items:flex-start; }
-    .toolbar{ margin-top:-24px; }
-  }
+@media (max-width:520px){
+  .nameplate{ flex-direction:column; align-items:flex-start; }
+  .toolbar{ margin-top:-24px; }
+}
 </style>
 </head>
 <body>
@@ -328,8 +347,11 @@
   <div class="blob blob3"></div>
   <div class="nameplate">
     <div class="brand">
-      <h1 id="libName">Бібліотечна полиця</h1>
-      <span class="subtitle" id="bookCountLabel">0 книг</span>
+      <div class="logo-mark"><img src="logo.png" alt="Логотип бібліотеки"></div>
+      <div class="brand-text">
+        <h1 id="libName">Бібліотечна полиця</h1>
+        <span class="subtitle" id="bookCountLabel">0 книг</span>
+      </div>
     </div>
     <div class="lib-toggle">
       <button class="settings-btn" id="settingsBtn" title="Налаштування бібліотеки">⚙</button>
@@ -362,121 +384,172 @@
 <div id="grid" class="grid" style="display:none;"></div>
 <div id="emptyState" class="empty-state" style="display:none;">Поки що тут порожньо. Додайте першу книгу.</div>
 
+<div class="site-footer">
+  <a class="gh-badge" href="https://github.com/katerynahavrysh/FW" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    код на GitHub
+  </a>
+</div>
+
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 
 <script>
 (function(){
-  const STORAGE_KEY_BOOKS = 'library:books';
-  const STORAGE_KEY_REVIEWS = 'library:reviews';
-  const STORAGE_KEY_CONFIG = 'library:config';
+const STORAGE_KEY_BOOKS = 'library:books';
+const STORAGE_KEY_REVIEWS = 'library:reviews';
+const STORAGE_KEY_CONFIG = 'library:config';
 
-  let books = [];
-  let reviews = {};
-  let config = { name: 'Бібліотечна полиця', pin: '1234' };
-  let isLibrarian = false;
-  let openComments = new Set();
-  let expandedDesc = new Set();
-  let editingId = null;
-  let pendingReviewStars = {};
-  let animateNext = true;
+let books = [];
+let reviews = {};
+let config = { name: 'Бібліотечна полиця', pin: '1234' };
+let isLibrarian = false;
+let openComments = new Set();
+let expandedDesc = new Set();
+let editingId = null;
+let pendingReviewStars = {};
+let animateNext = true;
 
-  const $grid = document.getElementById('grid');
-  const $loading = document.getElementById('loadingState');
-  const $empty = document.getElementById('emptyState');
-  const $toast = document.getElementById('toast');
-  const $modalRoot = document.getElementById('modalRoot');
-  const $libName = document.getElementById('libName');
-  const $bookCountLabel = document.getElementById('bookCountLabel');
-  const $modeSwitch = document.getElementById('modeSwitch');
-  const $readerBtn = document.getElementById('readerBtn');
-  const $librarianBtn = document.getElementById('librarianBtn');
-  const $settingsBtn = document.getElementById('settingsBtn');
-  const $search = document.getElementById('searchInput');
-  const $onlyAvailable = document.getElementById('onlyAvailable');
-  const $sortSelect = document.getElementById('sortSelect');
+const $grid = document.getElementById('grid');
+const $loading = document.getElementById('loadingState');
+const $empty = document.getElementById('emptyState');
+const $toast = document.getElementById('toast');
+const $modalRoot = document.getElementById('modalRoot');
+const $libName = document.getElementById('libName');
+const $bookCountLabel = document.getElementById('bookCountLabel');
+const $modeSwitch = document.getElementById('modeSwitch');
+const $readerBtn = document.getElementById('readerBtn');
+const $librarianBtn = document.getElementById('librarianBtn');
+const $settingsBtn = document.getElementById('settingsBtn');
+const $search = document.getElementById('searchInput');
+const $onlyAvailable = document.getElementById('onlyAvailable');
+const $sortSelect = document.getElementById('sortSelect');
 
-  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
 
-  function showToast(msg){
-    $toast.textContent = msg;
-    $toast.classList.add('show');
-    setTimeout(()=> $toast.classList.remove('show'), 2200);
+function showToast(msg){
+  $toast.textContent = msg;
+  $toast.classList.add('show');
+  setTimeout(()=> $toast.classList.remove('show'), 2200);
+}
+
+function escapeHtml(str){
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// safeGet returns { ok, value }:
+//  - ok:true,  value:string  -> real saved data
+//  - ok:true,  value:null    -> confirmed empty (server responded fine, nothing stored yet)
+//  - ok:false, value:null    -> request/server failed — NOT the same as "empty"!
+async function safeGet(key){
+  try{
+    const res = await fetch(`/api/storage?key=${encodeURIComponent(key)}`);
+    if(!res.ok) return { ok:false, value:null };
+    const data = await res.json();
+    if(!data || typeof data !== 'object' || !('value' in data)) return { ok:false, value:null };
+    return { ok:true, value: data.value != null ? data.value : null };
+  }catch(e){ return { ok:false, value:null }; }
+}
+
+async function safeSet(key, value){
+  try{
+    const res = await fetch('/api/storage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key, value })
+    });
+    if(!res.ok){
+      let detail = '';
+      try{ const err = await res.json(); detail = err && err.error ? err.error : ''; }catch(e){}
+      showToast(detail ? `Не вдалося зберегти: ${detail}` : 'Не вдалося зберегти зміни. Спробуйте ще раз.');
+      return { ok:false };
+    }
+    await res.json();
+    return { ok:true };
+  }catch(e){ showToast('Помилка збереження. Перевірте з’єднання.'); return { ok:false }; }
+}
+
+let storageBroken = false;
+
+function showStorageWarning(){
+  if(document.getElementById('storageWarning')) return;
+  const el = document.createElement('div');
+  el.id = 'storageWarning';
+  el.className = 'storage-warning';
+  el.innerHTML = '⚠️ Не вдається з\'єднатися зі сховищем даних (KV). Зміни зараз <b>не зберігаються між оновленнями сторінки</b>. Перевірте: чи прив\'язано KV namespace <code>LIBRARY_KV</code> у налаштуваннях Cloudflare Pages, і чи зроблено новий деплой після прив\'язки.';
+  document.body.insertBefore(el, document.querySelector('.toolbar'));
+}
+
+async function loadAll(){
+  const [gotBooks, gotReviews, gotConfig] = await Promise.all([
+    safeGet(STORAGE_KEY_BOOKS), safeGet(STORAGE_KEY_REVIEWS), safeGet(STORAGE_KEY_CONFIG)
+  ]);
+
+  storageBroken = !gotBooks.ok || !gotReviews.ok || !gotConfig.ok;
+
+  if(gotBooks.ok && gotBooks.value != null){
+    try{ books = JSON.parse(gotBooks.value); }catch(e){ books = []; }
+  } else if(gotBooks.ok && gotBooks.value == null){
+    books = seedBooks();
+    await safeSet(STORAGE_KEY_BOOKS, JSON.stringify(books));
+  } else {
+    books = [];
   }
 
-  function escapeHtml(str){
-    return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  if(gotReviews.ok && gotReviews.value != null){
+    try{ reviews = JSON.parse(gotReviews.value); }catch(e){ reviews = {}; }
+  } else if(gotReviews.ok && gotReviews.value == null){
+    reviews = {};
+    await safeSet(STORAGE_KEY_REVIEWS, JSON.stringify(reviews));
+  } else {
+    reviews = {};
   }
 
-  async function safeGet(key){
-    try{
-      const res = await fetch(`/api/storage?key=${encodeURIComponent(key)}`);
-      if(!res.ok) return null;
-      const data = await res.json();
-      return data && data.value != null ? data.value : null;
-    }catch(e){ return null; }
-  }
-  async function safeSet(key, value){
-    try{
-      const res = await fetch('/api/storage', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key, value })
-      });
-      if(!res.ok){ showToast('Не вдалося зберегти зміни. Спробуйте ще раз.'); return null; }
-      return await res.json();
-    }catch(e){ showToast('Помилка збереження. Перевірте з’єднання.'); return null; }
+  if(gotConfig.ok && gotConfig.value != null){
+    try{ config = JSON.parse(gotConfig.value); }catch(e){ config = { name:'Бібліотечна полиця', pin:'1234' }; }
+  } else if(gotConfig.ok && gotConfig.value == null){
+    await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config));
   }
 
-  async function loadAll(){
-    const rawBooks = await safeGet(STORAGE_KEY_BOOKS);
-    const rawReviews = await safeGet(STORAGE_KEY_REVIEWS);
-    const rawConfig = await safeGet(STORAGE_KEY_CONFIG);
+  if(storageBroken) showStorageWarning();
+}
 
-    if(rawBooks){ try{ books = JSON.parse(rawBooks); }catch(e){ books = []; } }
-    else { books = seedBooks(); await safeSet(STORAGE_KEY_BOOKS, JSON.stringify(books)); }
+function seedBooks(){
+  return [
+    { id: uid(), title:'Захар Беркут', author:'Іван Франко', description:'Історична повість про громаду карпатського села, яка боронить свою свободу від монгольської навали.', photo:'', total:2, available:1, addedAt:Date.now()-200000 },
+    { id: uid(), title:'Кобзар', author:'Тарас Шевченко', description:'Збірка поезій, що стала наріжним каменем української літератури та національної самосвідомості.', photo:'', total:3, available:3, addedAt:Date.now()-100000 },
+    { id: uid(), title:'Тигролови', author:'Іван Багряний', description:'Пригодницький роман про втечу від радянських репресій крізь сибірську тайгу.', photo:'', total:1, available:0, addedAt:Date.now() }
+  ];
+}
 
-    if(rawReviews){ try{ reviews = JSON.parse(rawReviews); }catch(e){ reviews = {}; } }
-    else { reviews = {}; await safeSet(STORAGE_KEY_REVIEWS, JSON.stringify(reviews)); }
+function avgRating(bookId){
+  const list = reviews[bookId] || [];
+  if(list.length === 0) return null;
+  return list.reduce((a,r)=>a+r.stars,0)/list.length;
+}
 
-    if(rawConfig){ try{ config = JSON.parse(rawConfig); }catch(e){ config = { name:'Бібліотечна полиця', pin:'1234' }; } }
-    else { await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config)); }
-  }
+function starsSvg(filled){
+  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="${filled ? 'var(--cyan-600)' : 'none'}" stroke="${filled ? 'var(--cyan-700)' : 'var(--gray-400)'}" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+}
 
-  function seedBooks(){
-    return [
-      { id: uid(), title:'Захар Беркут', author:'Іван Франко', description:'Історична повість про громаду карпатського села, яка боронить свою свободу від монгольської навали.', photo:'', total:2, available:1, addedAt:Date.now()-200000 },
-      { id: uid(), title:'Кобзар', author:'Тарас Шевченко', description:'Збірка поезій, що стала наріжним каменем української літератури та національної самосвідомості.', photo:'', total:3, available:3, addedAt:Date.now()-100000 },
-      { id: uid(), title:'Тигролови', author:'Іван Багряний', description:'Пригодницький роман про втечу від радянських репресій крізь сибірську тайгу.', photo:'', total:1, available:0, addedAt:Date.now() }
-    ];
-  }
+function renderStarsStatic(avg){
+  let html = '<div class="stars">';
+  for(let i=1;i<=5;i++) html += starsSvg(avg !== null && i <= Math.round(avg));
+  return html + '</div>';
+}
 
-  function avgRating(bookId){
-    const list = reviews[bookId] || [];
-    if(list.length === 0) return null;
-    return list.reduce((a,r)=>a+r.stars,0)/list.length;
-  }
+function renderStarsPicker(bookId, current){
+  let html = `<div class="stars-pick" data-book="${bookId}">`;
+  for(let i=1;i<=5;i++) html += `<button type="button" class="star" data-action="pick-star" data-book="${bookId}" data-val="${i}">${starsSvg(i <= current)}</button>`;
+  return html + '</div>';
+}
 
-  function starsSvg(filled){
-    return `<svg width="16" height="16" viewBox="0 0 24 24" fill="${filled ? 'var(--blue-500)' : 'none'}" stroke="${filled ? 'var(--blue-500)' : 'var(--gray-400)'}" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-  }
-  function renderStarsStatic(avg){
-    let html = '<div class="stars">';
-    for(let i=1;i<=5;i++) html += starsSvg(avg !== null && i <= Math.round(avg));
-    return html + '</div>';
-  }
-  function renderStarsPicker(bookId, current){
-    let html = `<div class="stars-pick" data-book="${bookId}">`;
-    for(let i=1;i<=5;i++) html += `<button type="button" class="star" data-action="pick-star" data-book="${bookId}" data-val="${i}">${starsSvg(i <= current)}</button>`;
-    return html + '</div>';
-  }
-
-  function ringBadgeHtml(available, total){
-    const r = 26, c = 2*Math.PI*r;
-    const pct = total > 0 ? Math.min(1, available/total) : 0;
-    const offset = c * (1-pct);
-    const empty = available <= 0;
-    return `
+function ringBadgeHtml(available, total){
+  const r = 26, c = 2*Math.PI*r;
+  const pct = total > 0 ? Math.min(1, available/total) : 0;
+  const offset = c * (1-pct);
+  const empty = available <= 0;
+  return `
     <div class="ring-badge ${empty?'zero':'avail'}">
       <svg width="64" height="64" viewBox="0 0 64 64">
         <circle class="ring-track" cx="32" cy="32" r="${r}" fill="none" stroke-width="4"></circle>
@@ -485,285 +558,274 @@
       </svg>
       <div class="ring-num">${available}/${total}<small>у наявн.</small></div>
     </div>`;
-  }
+}
 
-  function timeAgo(ts){
-    const diff = Date.now() - ts, min = Math.floor(diff/60000);
-    if(min < 1) return 'щойно';
-    if(min < 60) return `${min} хв тому`;
-    const hr = Math.floor(min/60);
-    if(hr < 24) return `${hr} год тому`;
-    return `${Math.floor(hr/24)} дн тому`;
-  }
+function timeAgo(ts){
+  const diff = Date.now() - ts, min = Math.floor(diff/60000);
+  if(min < 1) return 'щойно';
+  if(min < 60) return `${min} хв тому`;
+  const hr = Math.floor(min/60);
+  if(hr < 24) return `${hr} год тому`;
+  return `${Math.floor(hr/24)} дн тому`;
+}
 
-  function bookCardHtml(book, idx){
-    const isEditing = editingId === book.id;
-    if(isEditing) return editFormHtml(book);
-
-    const avg = avgRating(book.id);
-    const list = reviews[book.id] || [];
-    const commentsOpen = openComments.has(book.id);
-    const descExpanded = expandedDesc.has(book.id);
-    const pending = pendingReviewStars[book.id] || 0;
-    const animClass = animateNext ? 'anim' : '';
-    const delayStyle = animateNext ? `style="--d:${Math.min(idx,10)*45}ms"` : '';
-
-    const photoHtml = book.photo
-      ? `<img src="${escapeHtml(book.photo)}" alt="Обкладинка: ${escapeHtml(book.title)}" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='flex';">`
-      : '';
-
-    return `
-    <div class="card ${animClass}" ${delayStyle} data-book-id="${book.id}">
-      ${isLibrarian ? `
-        <div class="card-actions">
-          <button class="icon-btn" data-action="edit" data-book="${book.id}" title="Редагувати">✎</button>
-          <button class="icon-btn" data-action="delete" data-book="${book.id}" title="Видалити">🗑</button>
-        </div>` : ''}
-      ${ringBadgeHtml(book.available, book.total)}
-      <div class="card-photo-wrap">
-        ${photoHtml}
-        <div class="placeholder-icon" style="${book.photo ? 'display:none;':'display:flex;'}">
-          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1.3"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>
-        </div>
+function bookCardHtml(book, idx){
+  const isEditing = editingId === book.id;
+  if(isEditing) return editFormHtml(book);
+  const avg = avgRating(book.id);
+  const list = reviews[book.id] || [];
+  const commentsOpen = openComments.has(book.id);
+  const descExpanded = expandedDesc.has(book.id);
+  const pending = pendingReviewStars[book.id] || 0;
+  const animClass = animateNext ? 'anim' : '';
+  const delayStyle = animateNext ? `style="--d:${Math.min(idx,10)*45}ms"` : '';
+  const photoHtml = book.photo
+    ? `<img src="${escapeHtml(book.photo)}" alt="Обкладинка: ${escapeHtml(book.title)}" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='flex';">`
+    : '';
+  return `
+  <div class="card ${animClass}" ${delayStyle} data-book-id="${book.id}">
+    ${isLibrarian ? `
+    <div class="card-actions">
+      <button class="icon-btn" data-action="edit" data-book="${book.id}" title="Редагувати">✎</button>
+      <button class="icon-btn" data-action="delete" data-book="${book.id}" title="Видалити">🗑</button>
+    </div>` : ''}
+    ${ringBadgeHtml(book.available, book.total)}
+    <div class="card-photo-wrap">
+      ${photoHtml}
+      <div class="placeholder-icon" style="${book.photo ? 'display:none;':'display:flex;'}">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="1.3"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>
       </div>
-      <h3>${escapeHtml(book.title)}</h3>
-      <div class="author">${escapeHtml(book.author || 'Автор невідомий')}</div>
-      <p class="desc ${descExpanded ? 'expanded':''}">${escapeHtml(book.description || 'Без опису.')}</p>
-      ${(book.description && book.description.length > 110) ? `<button class="desc-toggle" data-action="toggle-desc" data-book="${book.id}">${descExpanded ? 'згорнути' : 'читати більше'}</button>` : ''}
-
-      <hr class="divider">
-
-      <div class="rating-row">
-        ${renderStarsStatic(avg)}
-        <span class="avg-text">${avg !== null ? avg.toFixed(1) + ' · ' + list.length + ' оцінок' : 'ще немає оцінок'}</span>
+    </div>
+    <h3>${escapeHtml(book.title)}</h3>
+    <div class="author">${escapeHtml(book.author || 'Автор невідомий')}</div>
+    <p class="desc ${descExpanded ? 'expanded':''}">${escapeHtml(book.description || 'Без опису.')}</p>
+    ${(book.description && book.description.length > 110) ? `<button class="desc-toggle" data-action="toggle-desc" data-book="${book.id}">${descExpanded ? 'згорнути' : 'читати більше'}</button>` : ''}
+    <hr class="divider">
+    <div class="rating-row">
+      ${renderStarsStatic(avg)}
+      <span class="avg-text">${avg !== null ? avg.toFixed(1) + ' · ' + list.length + ' оцінок' : 'ще немає оцінок'}</span>
+    </div>
+    <button class="comments-toggle" data-action="toggle-comments" data-book="${book.id}">
+      💬 ${list.length} відгук${list.length===1?'':(list.length>=2&&list.length<=4?'и':'ів')} ${commentsOpen ? '▲' : '▼'}
+    </button>
+    <div class="comments-panel ${commentsOpen ? 'open':''}">
+      ${list.length === 0 ? '<div class="no-comments">Будьте першими, хто залишить відгук.</div>' : list.slice().reverse().map(r => `
+        <div class="comment-item">
+          <div class="c-head"><span class="c-name">${escapeHtml(r.name || 'Анонім')} · ${r.stars}★</span><span>${timeAgo(r.ts)}</span></div>
+          <div>${escapeHtml(r.text)}</div>
+        </div>`).join('') }
+      <div class="review-form">
+        <label class="mono" style="font-size:10.5px;color:var(--gray-500);">ваша оцінка</label>
+        ${renderStarsPicker(book.id, pending)}
+        <input type="text" placeholder="Ваше ім'я (необов'язково)" data-role="review-name" data-book="${book.id}">
+        <textarea rows="2" placeholder="Коротко про книгу…" data-role="review-text" data-book="${book.id}"></textarea>
+        <button class="btn primary small" data-action="submit-review" data-book="${book.id}" style="align-self:flex-end;">Надіслати відгук</button>
       </div>
+    </div>
+  </div>`;
+}
 
-      <button class="comments-toggle" data-action="toggle-comments" data-book="${book.id}">
-        💬 ${list.length} відгук${list.length===1?'':(list.length>=2&&list.length<=4?'и':'ів')} ${commentsOpen ? '▲' : '▼'}
-      </button>
-
-      <div class="comments-panel ${commentsOpen ? 'open':''}">
-        ${list.length === 0 ? '<div class="no-comments">Будьте першими, хто залишить відгук.</div>' : list.slice().reverse().map(r => `
-          <div class="comment-item">
-            <div class="c-head"><span class="c-name">${escapeHtml(r.name || 'Анонім')} · ${r.stars}★</span><span>${timeAgo(r.ts)}</span></div>
-            <div>${escapeHtml(r.text)}</div>
-          </div>`).join('') }
-        <div class="review-form">
-          <label class="mono" style="font-size:10.5px;color:var(--gray-500);">ваша оцінка</label>
-          ${renderStarsPicker(book.id, pending)}
-          <input type="text" placeholder="Ваше ім'я (необов'язково)" data-role="review-name" data-book="${book.id}">
-          <textarea rows="2" placeholder="Коротко про книгу…" data-role="review-text" data-book="${book.id}"></textarea>
-          <button class="btn primary small" data-action="submit-review" data-book="${book.id}" style="align-self:flex-end;">Надіслати відгук</button>
-        </div>
+function editFormHtml(book){
+  const isNew = book.id === 'NEW';
+  return `
+  <div class="card" data-book-id="${book.id}">
+    <div class="edit-form">
+      <div><label>Назва*</label><input type="text" data-f="title" value="${escapeHtml(book.title)}"></div>
+      <div><label>Автор</label><input type="text" data-f="author" value="${escapeHtml(book.author)}"></div>
+      <div><label>Посилання на фото (URL)</label><input type="text" data-f="photo" value="${escapeHtml(book.photo)}" placeholder="https://…"></div>
+      <div><label>Опис</label><textarea rows="3" data-f="description">${escapeHtml(book.description)}</textarea></div>
+      <div class="two-col">
+        <div><label>Всього примірників</label><input type="number" min="0" data-f="total" value="${book.total}"></div>
+        <div><label>Доступно зараз</label><input type="number" min="0" data-f="available" value="${book.available}"></div>
       </div>
-    </div>`;
-  }
-
-  function editFormHtml(book){
-    const isNew = book.id === 'NEW';
-    return `
-    <div class="card" data-book-id="${book.id}">
-      <div class="edit-form">
-        <div><label>Назва*</label><input type="text" data-f="title" value="${escapeHtml(book.title)}"></div>
-        <div><label>Автор</label><input type="text" data-f="author" value="${escapeHtml(book.author)}"></div>
-        <div><label>Посилання на фото (URL)</label><input type="text" data-f="photo" value="${escapeHtml(book.photo)}" placeholder="https://…"></div>
-        <div><label>Опис</label><textarea rows="3" data-f="description">${escapeHtml(book.description)}</textarea></div>
-        <div class="two-col">
-          <div><label>Всього примірників</label><input type="number" min="0" data-f="total" value="${book.total}"></div>
-          <div><label>Доступно зараз</label><input type="number" min="0" data-f="available" value="${book.available}"></div>
-        </div>
-        <div class="form-actions">
-          <button class="btn small ghost-dark" data-action="cancel-edit">Скасувати</button>
-          <button class="btn primary small" data-action="${isNew ? 'save-new' : 'save-edit'}" data-book="${book.id}">Зберегти</button>
-        </div>
+      <div class="form-actions">
+        <button class="btn small ghost-dark" data-action="cancel-edit">Скасувати</button>
+        <button class="btn primary small" data-action="${isNew ? 'save-new' : 'save-edit'}" data-book="${book.id}">Зберегти</button>
       </div>
-    </div>`;
-  }
+    </div>
+  </div>`;
+}
 
-  function addTileHtml(){
-    return `<div class="add-card" data-action="start-new"><div class="plus">＋</div><div>Додати книгу</div></div>`;
-  }
+function addTileHtml(){
+  return `<div class="add-card" data-action="start-new"><div class="plus">＋</div><div>Додати книгу</div></div>`;
+}
 
-  function getFiltered(){
-    const q = $search.value.trim().toLowerCase();
-    const onlyAvail = $onlyAvailable.checked;
-    let list = books.filter(b => {
-      if(onlyAvail && b.available <= 0) return false;
-      if(!q) return true;
-      return b.title.toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q);
+function getFiltered(){
+  const q = $search.value.trim().toLowerCase();
+  const onlyAvail = $onlyAvailable.checked;
+  let list = books.filter(b => {
+    if(onlyAvail && b.available <= 0) return false;
+    if(!q) return true;
+    return b.title.toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q);
+  });
+  const sortBy = $sortSelect.value;
+  if(sortBy === 'title') list = list.slice().sort((a,b)=>a.title.localeCompare(b.title,'uk'));
+  else if(sortBy === 'rating') list = list.slice().sort((a,b)=>(avgRating(b.id)??-1)-(avgRating(a.id)??-1));
+  else list = list.slice().sort((a,b)=> b.addedAt - a.addedAt);
+  return list;
+}
+
+function render(){
+  $libName.textContent = config.name;
+  $bookCountLabel.textContent = `${books.length} книг${books.length===1?'а':(books.length>=2&&books.length<=4?'и':'')} · ${books.reduce((s,b)=>s+b.available,0)} доступно зараз`;
+  $modeSwitch.dataset.state = isLibrarian ? 'librarian' : 'reader';
+  $settingsBtn.classList.toggle('show', isLibrarian);
+
+  const filtered = getFiltered();
+  let html = '';
+  if(editingId === 'NEW') html += editFormHtml({id:'NEW', title:'', author:'', photo:'', description:'', total:1, available:1});
+  else if(isLibrarian) html += addTileHtml();
+  html += filtered.map((b,i)=>bookCardHtml(b,i)).join('');
+  $grid.innerHTML = html;
+  $grid.style.display = 'grid';
+  $loading.style.display = 'none';
+  $empty.style.display = (books.length===0 && editingId!=='NEW') ? 'block' : 'none';
+  attachTilt();
+  animateNext = false;
+}
+
+function attachTilt(){
+  $grid.querySelectorAll('.card[data-book-id]').forEach(card => {
+    card.addEventListener('mouseenter', () => { card.classList.add('tilting'); });
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateX(${(-y*5).toFixed(2)}deg) rotateY(${(x*5).toFixed(2)}deg) translateY(-4px)`;
     });
-    const sortBy = $sortSelect.value;
-    if(sortBy === 'title') list = list.slice().sort((a,b)=>a.title.localeCompare(b.title,'uk'));
-    else if(sortBy === 'rating') list = list.slice().sort((a,b)=>(avgRating(b.id)??-1)-(avgRating(a.id)??-1));
-    else list = list.slice().sort((a,b)=> b.addedAt - a.addedAt);
-    return list;
-  }
-
-  function render(){
-    $libName.textContent = config.name;
-    $bookCountLabel.textContent = `${books.length} книг${books.length===1?'а':(books.length>=2&&books.length<=4?'и':'')} · ${books.reduce((s,b)=>s+b.available,0)} доступно зараз`;
-    $modeSwitch.dataset.state = isLibrarian ? 'librarian' : 'reader';
-    $settingsBtn.classList.toggle('show', isLibrarian);
-
-    const filtered = getFiltered();
-    let html = '';
-    if(editingId === 'NEW') html += editFormHtml({id:'NEW', title:'', author:'', photo:'', description:'', total:1, available:1});
-    else if(isLibrarian) html += addTileHtml();
-    html += filtered.map((b,i)=>bookCardHtml(b,i)).join('');
-
-    $grid.innerHTML = html;
-    $grid.style.display = 'grid';
-    $loading.style.display = 'none';
-    $empty.style.display = (books.length===0 && editingId!=='NEW') ? 'block' : 'none';
-
-    attachTilt();
-    animateNext = false;
-  }
-
-  function attachTilt(){
-    $grid.querySelectorAll('.card[data-book-id]').forEach(card => {
-      card.addEventListener('mouseenter', () => { card.classList.add('tilting'); });
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left)/r.width - 0.5;
-        const y = (e.clientY - r.top)/r.height - 0.5;
-        card.style.transform = `perspective(800px) rotateX(${(-y*5).toFixed(2)}deg) rotateY(${(x*5).toFixed(2)}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.classList.remove('tilting');
-        card.style.transform = '';
-      });
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('tilting');
+      card.style.transform = '';
     });
-  }
-
-  async function persistBooks(){ await safeSet(STORAGE_KEY_BOOKS, JSON.stringify(books)); }
-  async function persistReviews(){ await safeSet(STORAGE_KEY_REVIEWS, JSON.stringify(reviews)); }
-  async function persistConfig(){ await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config)); }
-
-  function openPinModal(){
-    $modalRoot.innerHTML = `
-      <div class="modal-overlay" id="pinOverlay">
-        <div class="modal">
-          <h3>Вхід для бібліотекарки</h3>
-          <p>Введіть PIN-код, щоб редагувати каталог.</p>
-          <input type="password" id="pinInput" inputmode="numeric" maxlength="12" autofocus>
-          <div class="error" id="pinError"></div>
-          <div class="modal-actions">
-            <button class="btn small ghost-dark" id="pinCancel">Скасувати</button>
-            <button class="btn primary small" id="pinSubmit">Увійти</button>
-          </div>
-        </div>
-      </div>`;
-    const overlay = document.getElementById('pinOverlay');
-    const input = document.getElementById('pinInput');
-    const err = document.getElementById('pinError');
-    document.getElementById('pinCancel').onclick = () => overlay.remove();
-    overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
-    function trySubmit(){
-      if(input.value === config.pin){ isLibrarian = true; overlay.remove(); render(); showToast('Режим бібліотекарки увімкнено'); }
-      else{ err.textContent = 'Невірний PIN-код.'; }
-    }
-    document.getElementById('pinSubmit').onclick = trySubmit;
-    input.addEventListener('keydown', e => { if(e.key === 'Enter') trySubmit(); });
-    setTimeout(()=>input.focus(), 50);
-  }
-
-  function openChangePinModal(){
-    $modalRoot.innerHTML = `
-      <div class="modal-overlay" id="cpOverlay">
-        <div class="modal">
-          <h3>Налаштування бібліотеки</h3>
-          <p>Назва бібліотеки та PIN-код для редагування.</p>
-          <label style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gray-500);">Назва</label>
-          <input type="text" id="nameInput" style="letter-spacing:normal;text-align:left;margin:6px 0 10px;" value="${escapeHtml(config.name)}">
-          <label style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gray-500);">Новий PIN</label>
-          <input type="text" id="newPinInput" style="margin-top:6px;" value="${escapeHtml(config.pin)}">
-          <div class="modal-actions">
-            <button class="btn small ghost-dark" id="cpCancel">Скасувати</button>
-            <button class="btn primary small" id="cpSave">Зберегти</button>
-          </div>
-        </div>
-      </div>`;
-    const overlay = document.getElementById('cpOverlay');
-    document.getElementById('cpCancel').onclick = () => overlay.remove();
-    overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
-    document.getElementById('cpSave').onclick = async () => {
-      config.name = document.getElementById('nameInput').value.trim() || config.name;
-      config.pin = document.getElementById('newPinInput').value.trim() || config.pin;
-      await persistConfig(); overlay.remove(); render(); showToast('Налаштування збережено');
-    };
-  }
-
-  function readFormFields(cardEl){
-    const get = f => cardEl.querySelector(`[data-f="${f}"]`).value;
-    return {
-      title: get('title').trim(), author: get('author').trim(), photo: get('photo').trim(),
-      description: get('description').trim(),
-      total: Math.max(0, parseInt(get('total'),10) || 0),
-      available: Math.max(0, parseInt(get('available'),10) || 0),
-    };
-  }
-
-  $grid.addEventListener('click', async (e) => {
-    const t = e.target.closest('[data-action]');
-    if(!t) return;
-    const action = t.dataset.action;
-    const bookId = t.dataset.book;
-
-    if(action === 'toggle-desc'){ expandedDesc.has(bookId) ? expandedDesc.delete(bookId) : expandedDesc.add(bookId); render(); }
-    else if(action === 'toggle-comments'){ openComments.has(bookId) ? openComments.delete(bookId) : openComments.add(bookId); render(); }
-    else if(action === 'pick-star'){ pendingReviewStars[bookId] = parseInt(t.dataset.val,10); render(); }
-    else if(action === 'submit-review'){
-      const card = t.closest('.card');
-      const name = card.querySelector('[data-role="review-name"]').value.trim();
-      const text = card.querySelector('[data-role="review-text"]').value.trim();
-      const stars = pendingReviewStars[bookId] || 0;
-      if(stars === 0){ showToast('Оберіть кількість зірок.'); return; }
-      if(!reviews[bookId]) reviews[bookId] = [];
-      reviews[bookId].push({ id: uid(), name, stars, text, ts: Date.now() });
-      pendingReviewStars[bookId] = 0; openComments.add(bookId);
-      await persistReviews(); render(); showToast('Дякуємо за відгук!');
-    }
-    else if(action === 'start-new'){ editingId = 'NEW'; render(); }
-    else if(action === 'cancel-edit'){ editingId = null; render(); }
-    else if(action === 'edit'){ editingId = bookId; render(); }
-    else if(action === 'delete'){
-      if(confirm('Видалити цю книгу з каталогу?')){
-        books = books.filter(b => b.id !== bookId); delete reviews[bookId];
-        await persistBooks(); await persistReviews(); render(); showToast('Книгу видалено');
-      }
-    }
-    else if(action === 'save-new'){
-      const card = t.closest('.card'); const data = readFormFields(card);
-      if(!data.title){ showToast('Вкажіть назву книги.'); return; }
-      if(data.available > data.total) data.available = data.total;
-      books.push({ id: uid(), ...data, addedAt: Date.now() });
-      editingId = null; await persistBooks(); render(); showToast('Книгу додано');
-    }
-    else if(action === 'save-edit'){
-      const card = t.closest('.card'); const data = readFormFields(card);
-      if(!data.title){ showToast('Вкажіть назву книги.'); return; }
-      if(data.available > data.total) data.available = data.total;
-      const idx = books.findIndex(b => b.id === bookId);
-      if(idx > -1) books[idx] = { ...books[idx], ...data };
-      editingId = null; await persistBooks(); render(); showToast('Зміни збережено');
-    }
   });
+}
 
-  $readerBtn.addEventListener('click', () => {
-    if(isLibrarian){ isLibrarian = false; editingId = null; render(); showToast('Режим читачки'); }
-  });
-  $librarianBtn.addEventListener('click', () => {
-    if(!isLibrarian) openPinModal();
-  });
-  $settingsBtn.addEventListener('click', () => { if(isLibrarian) openChangePinModal(); });
-  $libName.addEventListener('dblclick', () => { if(isLibrarian) openChangePinModal(); });
+async function persistBooks(){ await safeSet(STORAGE_KEY_BOOKS, JSON.stringify(books)); }
+async function persistReviews(){ await safeSet(STORAGE_KEY_REVIEWS, JSON.stringify(reviews)); }
+async function persistConfig(){ await safeSet(STORAGE_KEY_CONFIG, JSON.stringify(config)); }
 
-  $search.addEventListener('input', render);
-  $onlyAvailable.addEventListener('change', render);
-  $sortSelect.addEventListener('change', render);
+function openPinModal(){
+  $modalRoot.innerHTML = `
+  <div class="modal-overlay" id="pinOverlay">
+    <div class="modal">
+      <h3>Вхід для бібліотекарки</h3>
+      <p>Введіть PIN-код, щоб редагувати каталог.</p>
+      <input type="password" id="pinInput" inputmode="numeric" maxlength="12" autofocus>
+      <div class="error" id="pinError"></div>
+      <div class="modal-actions">
+        <button class="btn small ghost-dark" id="pinCancel">Скасувати</button>
+        <button class="btn primary small" id="pinSubmit">Увійти</button>
+      </div>
+    </div>
+  </div>`;
+  const overlay = document.getElementById('pinOverlay');
+  const input = document.getElementById('pinInput');
+  const err = document.getElementById('pinError');
+  document.getElementById('pinCancel').onclick = () => overlay.remove();
+  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
+  function trySubmit(){
+    if(input.value === config.pin){ isLibrarian = true; overlay.remove(); render(); showToast('Режим бібліотекарки увімкнено'); }
+    else{ err.textContent = 'Невірний PIN-код.'; }
+  }
+  document.getElementById('pinSubmit').onclick = trySubmit;
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') trySubmit(); });
+  setTimeout(()=>input.focus(), 50);
+}
 
-  loadAll().then(render);
+function openChangePinModal(){
+  $modalRoot.innerHTML = `
+  <div class="modal-overlay" id="cpOverlay">
+    <div class="modal">
+      <h3>Налаштування бібліотеки</h3>
+      <p>Назва бібліотеки та PIN-код для редагування.</p>
+      <label style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gray-500);">Назва</label>
+      <input type="text" id="nameInput" style="letter-spacing:normal;text-align:left;margin:6px 0 10px;" value="${escapeHtml(config.name)}">
+      <label style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--gray-500);">Новий PIN</label>
+      <input type="text" id="newPinInput" style="margin-top:6px;" value="${escapeHtml(config.pin)}">
+      <div class="modal-actions">
+        <button class="btn small ghost-dark" id="cpCancel">Скасувати</button>
+        <button class="btn primary small" id="cpSave">Зберегти</button>
+      </div>
+    </div>
+  </div>`;
+  const overlay = document.getElementById('cpOverlay');
+  document.getElementById('cpCancel').onclick = () => overlay.remove();
+  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.remove(); });
+  document.getElementById('cpSave').onclick = async () => {
+    config.name = document.getElementById('nameInput').value.trim() || config.name;
+    config.pin = document.getElementById('newPinInput').value.trim() || config.pin;
+    await persistConfig(); overlay.remove(); render(); showToast('Налаштування збережено');
+  };
+}
+
+function readFormFields(cardEl){
+  const get = f => cardEl.querySelector(`[data-f="${f}"]`).value;
+  return {
+    title: get('title').trim(), author: get('author').trim(), photo: get('photo').trim(),
+    description: get('description').trim(),
+    total: Math.max(0, parseInt(get('total'),10) || 0),
+    available: Math.max(0, parseInt(get('available'),10) || 0),
+  };
+}
+
+$grid.addEventListener('click', async (e) => {
+  const t = e.target.closest('[data-action]');
+  if(!t) return;
+  const action = t.dataset.action;
+  const bookId = t.dataset.book;
+  if(action === 'toggle-desc'){ expandedDesc.has(bookId) ? expandedDesc.delete(bookId) : expandedDesc.add(bookId); render(); }
+  else if(action === 'toggle-comments'){ openComments.has(bookId) ? openComments.delete(bookId) : openComments.add(bookId); render(); }
+  else if(action === 'pick-star'){ pendingReviewStars[bookId] = parseInt(t.dataset.val,10); render(); }
+  else if(action === 'submit-review'){
+    const card = t.closest('.card');
+    const name = card.querySelector('[data-role="review-name"]').value.trim();
+    const text = card.querySelector('[data-role="review-text"]').value.trim();
+    const stars = pendingReviewStars[bookId] || 0;
+    if(stars === 0){ showToast('Оберіть кількість зірок.'); return; }
+    if(!reviews[bookId]) reviews[bookId] = [];
+    reviews[bookId].push({ id: uid(), name, stars, text, ts: Date.now() });
+    pendingReviewStars[bookId] = 0; openComments.add(bookId);
+    await persistReviews(); render(); showToast('Дякуємо за відгук!');
+  }
+  else if(action === 'start-new'){ editingId = 'NEW'; render(); }
+  else if(action === 'cancel-edit'){ editingId = null; render(); }
+  else if(action === 'edit'){ editingId = bookId; render(); }
+  else if(action === 'delete'){
+    if(confirm('Видалити цю книгу з каталогу?')){
+      books = books.filter(b => b.id !== bookId); delete reviews[bookId];
+      await persistBooks(); await persistReviews(); render(); showToast('Книгу видалено');
+    }
+  }
+  else if(action === 'save-new'){
+    const card = t.closest('.card'); const data = readFormFields(card);
+    if(!data.title){ showToast('Вкажіть назву книги.'); return; }
+    if(data.available > data.total) data.available = data.total;
+    books.push({ id: uid(), ...data, addedAt: Date.now() });
+    editingId = null; await persistBooks(); render(); showToast('Книгу додано');
+  }
+  else if(action === 'save-edit'){
+    const card = t.closest('.card'); const data = readFormFields(card);
+    if(!data.title){ showToast('Вкажіть назву книги.'); return; }
+    if(data.available > data.total) data.available = data.total;
+    const idx = books.findIndex(b => b.id === bookId);
+    if(idx > -1) books[idx] = { ...books[idx], ...data };
+    editingId = null; await persistBooks(); render(); showToast('Зміни збережено');
+  }
+});
+
+$readerBtn.addEventListener('click', () => {
+  if(isLibrarian){ isLibrarian = false; editingId = null; render(); showToast('Режим читачки'); }
+});
+$librarianBtn.addEventListener('click', () => {
+  if(!isLibrarian) openPinModal();
+});
+$settingsBtn.addEventListener('click', () => { if(isLibrarian) openChangePinModal(); });
+$libName.addEventListener('dblclick', () => { if(isLibrarian) openChangePinModal(); });
+$search.addEventListener('input', render);
+$onlyAvailable.addEventListener('change', render);
+$sortSelect.addEventListener('change', render);
+
+loadAll().then(render);
 })();
 </script>
 </body>
