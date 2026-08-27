@@ -238,6 +238,21 @@ select.sort{
   font-size:11px; cursor:pointer; text-align:left; width:fit-content; font-weight:500;
 }
 .desc-toggle:hover{ text-decoration:underline; }
+.tag-list{ display:flex; flex-wrap:wrap; gap:6px; margin-top:-2px; }
+.tag-chip{
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600;
+  background:var(--cyan-100); color:var(--cyan-700); border:1px solid var(--cyan-100);
+  border-radius:20px; padding:3px 10px; cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.tag-chip:hover{ background:var(--cyan-400); color:#fff; }
+.tag-chip.active{ background:linear-gradient(135deg, var(--cyan-500), var(--cyan-700)); color:#fff; border-color:transparent; }
+.tag-cloud{
+  max-width:920px; margin:0 auto 18px; padding:0 20px;
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+}
+.tag-cloud .tag-cloud-label{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-500); margin-right:2px; }
+.tag-cloud .tag-chip.clear{ background:var(--surface); color:var(--gray-500); border:1px solid var(--border); }
+.tag-cloud .tag-chip.clear:hover{ background:var(--gray-100); color:var(--ink); }
 .divider{ border:none; border-top:1px solid var(--border); margin:1px 0; }
 .rating-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .stars{ display:flex; gap:2px; }
@@ -410,6 +425,7 @@ select.sort{
 </div>
 
 <div id="loadingState" class="loading-state">завантаження каталогу…</div>
+<div id="tagCloud" class="tag-cloud" style="display:none;"></div>
 <div id="grid" class="grid" style="display:none;"></div>
 <div id="emptyState" class="empty-state" style="display:none;">Поки що тут порожньо. Додайте першу книгу.</div>
 
@@ -440,6 +456,7 @@ let expandedDesc = new Set();
 let editingId = null;
 let pendingReviewStars = {};
 let animateNext = true;
+let activeTags = new Set();
 
 const $grid = document.getElementById('grid');
 const $loading = document.getElementById('loadingState');
@@ -453,6 +470,7 @@ const $readerBtn = document.getElementById('readerBtn');
 const $librarianBtn = document.getElementById('librarianBtn');
 const $settingsBtn = document.getElementById('settingsBtn');
 const $search = document.getElementById('searchInput');
+const $tagCloud = document.getElementById('tagCloud');
 const $onlyAvailable = document.getElementById('onlyAvailable');
 const $sortSelect = document.getElementById('sortSelect');
 
@@ -630,6 +648,44 @@ function borrowersSectionHtml(book){
   </div>`;
 }
 
+function extractTags(text){
+  if(!text) return [];
+  const matches = text.match(/#[\p{L}\p{N}_-]+/gu) || [];
+  const seen = new Set();
+  const out = [];
+  matches.forEach(m => {
+    const tag = m.slice(1).toLowerCase();
+    if(tag && !seen.has(tag)){ seen.add(tag); out.push(tag); }
+  });
+  return out;
+}
+
+function stripTags(text){
+  if(!text) return '';
+  return text.replace(/#[\p{L}\p{N}_-]+/gu, '').replace(/[ \t]{2,}/g, ' ').replace(/\s+\n/g, '\n').trim();
+}
+
+function allTagsSorted(){
+  const counts = new Map();
+  books.forEach(b => extractTags(b.description).forEach(tag => counts.set(tag, (counts.get(tag)||0) + 1)));
+  return [...counts.entries()].sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0],'uk'));
+}
+
+function renderTagCloud(){
+  const tags = allTagsSorted();
+  if(tags.length === 0){ $tagCloud.style.display = 'none'; $tagCloud.innerHTML = ''; return; }
+  $tagCloud.style.display = 'flex';
+  $tagCloud.innerHTML = `<span class="tag-cloud-label">теги:</span>` +
+    tags.map(([tag,count]) => `<button class="tag-chip ${activeTags.has(tag)?'active':''}" data-action="toggle-tag" data-tag="${escapeHtml(tag)}">#${escapeHtml(tag)} <span style="opacity:.65;">${count}</span></button>`).join('') +
+    (activeTags.size > 0 ? `<button class="tag-chip clear" data-action="clear-tags">✕ очистити</button>` : '');
+}
+
+function tagChipsHtml(book){
+  const tags = extractTags(book.description);
+  if(tags.length === 0) return '';
+  return `<div class="tag-list">${tags.map(tag => `<button class="tag-chip ${activeTags.has(tag)?'active':''}" data-action="toggle-tag" data-tag="${escapeHtml(tag)}">#${escapeHtml(tag)}</button>`).join('')}</div>`;
+}
+
 function timeAgo(ts){
   const diff = Date.now() - ts, min = Math.floor(diff/60000);
   if(min < 1) return 'щойно';
@@ -668,8 +724,9 @@ function bookCardHtml(book, idx){
     </div>
     <h3>${escapeHtml(book.title)}</h3>
     <div class="author">${escapeHtml(book.author || 'Автор невідомий')}</div>
-    <p class="desc ${descExpanded ? 'expanded':''}">${escapeHtml(book.description || 'Без опису.')}</p>
-    ${(book.description && book.description.length > 110) ? `<button class="desc-toggle" data-action="toggle-desc" data-book="${book.id}">${descExpanded ? 'згорнути' : 'читати більше'}</button>` : ''}
+    <p class="desc ${descExpanded ? 'expanded':''}">${escapeHtml(stripTags(book.description) || 'Без опису.')}</p>
+    ${(book.description && stripTags(book.description).length > 110) ? `<button class="desc-toggle" data-action="toggle-desc" data-book="${book.id}">${descExpanded ? 'згорнути' : 'читати більше'}</button>` : ''}
+    ${tagChipsHtml(book)}
     ${borrowersSectionHtml(book)}
     <hr class="divider">
     <div class="rating-row">
@@ -704,7 +761,7 @@ function editFormHtml(book){
       <div><label>Назва*</label><input type="text" data-f="title" value="${escapeHtml(book.title)}"></div>
       <div><label>Автор</label><input type="text" data-f="author" value="${escapeHtml(book.author)}"></div>
       <div><label>Посилання на фото (URL)</label><input type="text" data-f="photo" value="${escapeHtml(book.photo)}" placeholder="https://…"></div>
-      <div><label>Опис</label><textarea rows="3" data-f="description">${escapeHtml(book.description)}</textarea></div>
+      <div><label>Опис (можна додавати теги через #, напр. #фентезі #українське)</label><textarea rows="3" data-f="description">${escapeHtml(book.description)}</textarea></div>
       <div class="two-col">
         <div><label>Всього примірників</label><input type="number" min="0" data-f="total" value="${book.total}"></div>
         <div><label>Доступно зараз</label><input type="number" min="0" data-f="available" value="${book.available}"></div>
@@ -722,12 +779,15 @@ function addTileHtml(){
 }
 
 function getFiltered(){
-  const q = $search.value.trim().toLowerCase();
+  const raw = $search.value.trim().toLowerCase();
+  const q = raw.startsWith('#') ? raw.slice(1) : raw;
   const onlyAvail = $onlyAvailable.checked;
   let list = books.filter(b => {
     if(onlyAvail && b.available <= 0) return false;
+    const tags = extractTags(b.description);
+    if(activeTags.size > 0 && ![...activeTags].every(t => tags.includes(t))) return false;
     if(!q) return true;
-    return b.title.toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q);
+    return b.title.toLowerCase().includes(q) || (b.author||'').toLowerCase().includes(q) || tags.some(t => t.includes(q));
   });
   const sortBy = $sortSelect.value;
   if(sortBy === 'title') list = list.slice().sort((a,b)=>a.title.localeCompare(b.title,'uk'));
@@ -742,6 +802,7 @@ function render(){
   $modeSwitch.dataset.state = isLibrarian ? 'librarian' : 'reader';
   $settingsBtn.classList.toggle('show', isLibrarian);
 
+  renderTagCloud();
   const filtered = getFiltered();
   let html = '';
   if(editingId === 'NEW') html += editFormHtml({id:'NEW', title:'', author:'', photo:'', description:'', total:1, available:1});
@@ -916,6 +977,21 @@ $librarianBtn.addEventListener('click', () => {
 $settingsBtn.addEventListener('click', () => { if(isLibrarian) openChangePinModal(); });
 $libName.addEventListener('dblclick', () => { if(isLibrarian) openChangePinModal(); });
 $search.addEventListener('input', render);
+
+function toggleTag(tag){
+  if(activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+  render();
+}
+$tagCloud.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-action]');
+  if(!t) return;
+  if(t.dataset.action === 'toggle-tag') toggleTag(t.dataset.tag);
+  else if(t.dataset.action === 'clear-tags'){ activeTags.clear(); render(); }
+});
+$grid.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-action="toggle-tag"]');
+  if(t) toggleTag(t.dataset.tag);
+});
 $onlyAvailable.addEventListener('change', render);
 $sortSelect.addEventListener('change', render);
 
